@@ -80,26 +80,43 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 27,
+   "execution_count": 33,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
    "source": [
+    "#importing the dependent variable and performing feature engineering\n",
     "import pandas as pd\n",
     "import matplotlib.pyplot as plt\n",
-    "def avg_data_2013():\n",
+    "def avg_data_2013(): \n",
     "    temp_i = 0\n",
     "    average = []\n",
+    "    # selecting the the 24 records which condtitute a single day \n",
     "    for rows in pd.read_csv(\"C:\\\\Users\\\\S533718\\\\Desktop\\\\Datasets\\\\Pridicting_Air_Quality_ML\\\\data\\\\AQI\\\\aqi2013.csv\",chunksize =24):\n",
     "        add_var = 0\n",
     "        avg = 0\n",
     "        data =[]\n",
     "        df = pd.DataFrame(data=rows)\n",
     "        for index,rows in df.iterrows():\n",
+    "            # appending all the 24 samples pertaining to pm2.5 to data\n",
     "            data.append([\"PM2.5\"])\n",
     "        for i in data:\n",
     "            if type(i) is float or type(i) is int:\n",
     "                add_var = add_var + i \n",
     "            elif type(i) is str:\n",
+    "                # ignoring null and other unwanted values\n",
     "                if i!= \"NoData\" and i!= \"PwrFail\" and i!= \"---\" and i!= \"InVld\":\n",
     "                    temp = float(i)\n",
     "                    add_var = add_var + temp\n",
@@ -224,8 +241,24 @@
     "    lst2015 = avg_data_2015()\n",
     "    lst2016 = avg_data_2016()\n",
     "    lst2017 = avg_data_2017()\n",
-    "    lst2018 = avg_data_2018()"
+    "    lst2018 = avg_data_2018()\n",
+    "    plt.plot(range(0,365),lst2013,label=\"2013 data\")\n",
+    "#     plt.plot(range(0,364),lst2014,label=\"2014 data\")\n",
+    "#     plt.plot(range(0,365),lst2015,label=\"2015 data\")\n",
+    "    plt.show()\n",
+    "#     plt.plot(range(0,365),lst2016,label=\"2016 data\")\n",
+    "#     plt.plot(range(0,365),lst2017,label=\"2017 data\")\n",
+    "#     plt.plot(range(0,365),lst2018,label=\"2018 data\")\n",
+    "    \n",
+    "    "
    ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
   }
  ],
  "metadata": {
